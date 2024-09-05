@@ -1,31 +1,38 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+# Create your models here.
 class Author(models.Model):
-    name=models.CharField(max_length=215)
-
-    def __str___(self):
+    name = models.CharField(max_length=100)
+    def __str__(self):
         return self.name
-    
+
 class Book(models.Model):
-    title = models.CharField(max_length=215)
-    author =models.ForeignKey (Author ,on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
+
+    class Meta:
+        permissions = [
+            ('can_add_book', 'Can add book'),
+            ('can_change_book', 'Can change book'),
+            ('can_delete_book', 'Can delete book')
+        ]
 
     def __str__(self):
-        return self.title
-    
-class Library(models.Model):
-        name = models.CharField(max_length=215)
-        books =models.ManyToManyField(Book)
+        return self.name
 
-        def __str__(self):
-            return self.name
+class Library(models.Model):
+    name = models.CharField(max_length=100)
+    books = models.ManyToManyField(Book, related_name='libraries')
+    def __str__(self):
+        return self.name
 
 class Librarian(models.Model):
-    name = models.CharField(max_length=215)
-    library = models.OneToOneField(Library,on_delete=models.CASCADE)
-
+    name = models.CharField(max_length=100)
+    library = models.OneToOneField(Library, on_delete=models.CASCADE)
     def __str__(self):
-            return self.name
+        return self.name
+    
 
 class UserProfile(models.Model):
     ROLE_CHOICES = [
