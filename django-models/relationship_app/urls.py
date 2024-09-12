@@ -14,7 +14,20 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
 ]
+
+'''
 urlpatterns = [
     path('admin/', views.admin_view, name='admin_view'),
     path('librarian/', views.librarian_view, name='librarian_view'),
     path('member/', views.member_view, name='member_view'),]
+'''
+from django.urls import path
+from .admin_view import AdminView
+from .librarian_view import LibrarianView
+from .member_view import MemberView
+
+urlpatterns = [
+    path('admin/', AdminView.as_view(), name='admin_view'),
+    path('librarian/', LibrarianView.as_view(), name='librarian_view'),
+    path('member/', MemberView.as_view(), name='member_view'),
+]
