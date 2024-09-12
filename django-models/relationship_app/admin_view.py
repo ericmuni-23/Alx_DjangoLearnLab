@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 
-class AdminView(UserPassesTestMixin, TemplateView):
+class Admin(UserPassesTestMixin, TemplateView):
     template_name = 'admin_template.html'
 
     def test_func(self):

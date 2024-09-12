@@ -22,12 +22,12 @@ urlpatterns = [
     path('member/', views.member_view, name='member_view'),]
 '''
 from django.urls import path
-from .admin_view import AdminView
-from .librarian_view import LibrarianView
-from .member_view import MemberView
+from .admin_view import Admin
+from .librarian_view import Librarian
+from .member_view import Member
 
 urlpatterns = [
-    path('admin/', AdminView.as_view(), name='admin_view'),
-    path('librarian/', LibrarianView.as_view(), name='librarian_view'),
-    path('member/', MemberView.as_view(), name='member_view'),
+    path('admin/', Admin.as_view(), name='admin_view'),
+    path('librarian/', Librarian.as_view(), name='librarian_view'),
+    path('member/', Member.as_view(), name='member_view'),
 ]

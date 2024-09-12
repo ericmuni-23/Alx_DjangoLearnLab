@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 
-class LibrarianView(UserPassesTestMixin, TemplateView):
+class Librarian(UserPassesTestMixin, TemplateView):
     template_name = 'librarian_template.html'
 
     def test_func(self):

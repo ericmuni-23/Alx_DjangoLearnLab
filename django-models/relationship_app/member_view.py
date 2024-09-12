@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 
-class MemberView(UserPassesTestMixin, TemplateView):
+class Member(UserPassesTestMixin, TemplateView):
     template_name = 'member_template.html'
 
     def test_func(self):
