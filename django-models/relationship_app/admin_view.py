@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import redirect
 
-def is_admin(user):
-    return user.is_authenticated and user.userprofile.role == 'Admin'
+class AdminView(UserPassesTestMixin, TemplateView):
+    template_name = 'admin_template.html'
 
-@user_passes_test(is_admin)
-def admin_view(request):
-    return render(request, 'admin_template.html')
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.userprofile.role == 'Admin'
+
+    def handle_no_permission(self):
+        return redirect('home')  # Redirect to home page if user doesn't have permission

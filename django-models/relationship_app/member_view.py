@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import redirect
 
-def is_member(user):
-    return user.is_authenticated and user.userprofile.role == 'Member'
+class MemberView(UserPassesTestMixin, TemplateView):
+    template_name = 'member_template.html'
 
-@user_passes_test(is_member)
-def member_view(request):
-    return render(request, 'member_template.html')
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.userprofile.role == 'Member'
+
+    def handle_no_permission(self):
+        return redirect('home')  # Redirect to home page if user doesn't have permission
