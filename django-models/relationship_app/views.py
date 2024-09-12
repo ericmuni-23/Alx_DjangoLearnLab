@@ -67,7 +67,7 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('login')
 
 "UserCreationForm()", "relationship_app/register.html"
-'''
+
 def check_role(user, role):
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == role
 
@@ -85,8 +85,9 @@ def librarian_view(request):
 @user_passes_test(lambda user: check_role(user, 'Member'))
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
-'''
 
+
+'''
 def is_admin(user):
     return user.is_authenticated and user.userprofile.role == 'Admin'
 
@@ -107,6 +108,7 @@ def is_member(user):
 @user_passes_test(is_member)
 def member_view(request):
     return render(request, 'member_template.html')
+'''
 
 # Add book view
 @permission_required('relationship_app.can_add_book', raise_exception=True)
