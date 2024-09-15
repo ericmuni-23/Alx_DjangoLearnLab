@@ -1,1 +1,1 @@
-AUTH_USER_MODEL = 'users.CustomUser'
+UTH_USER_MODEL = 'users.CustomUser'["bookshelf.CustomUser"]
