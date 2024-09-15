@@ -5,6 +5,18 @@ from django.contrib.auth.admin import GroupAdmin
 from django.contrib.auth.models import Group
 from .models import MyModel
 from django.contrib.auth.models import Group, Permission
+from django.contrib.auth.admin import UserAdmin
+
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('date_of_birth', 'profile_photo')}),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('date_of_birth', 'profile_photo')}),
+    )
+
+admin.site.register(CustomUser, CustomUserAdmin)
 
 group, created = Group.objects.get_or_create(name='Editors')
 group.permissions.add(Permission.objects.get(codename='can_edit'))
