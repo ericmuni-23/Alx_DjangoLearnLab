@@ -16,8 +16,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404, redirect
-from models import Book
-from forms import BookForm
+from django.forms import BookForm
 
 # Create your views here.
 def book_list_view(request):
@@ -119,6 +118,3 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('book_list')
     return render(request, 'books/delete_book.html', {'book': book})
-
-    
-
