@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db import models
+from .managers import CustomUserManager
 
 # Create your models here.
 class Author(models.Model):
@@ -55,3 +57,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.username
+    
+    class MyModel(models.Model):
+     user = models.ForeignKey(CustomUserManager, on_delete=models.CASCADE)
+     
