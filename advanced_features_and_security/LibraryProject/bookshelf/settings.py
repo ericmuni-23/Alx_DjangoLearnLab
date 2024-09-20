@@ -13,6 +13,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Enforce secure cookies over HTTPS
 CSRF_COOKIE_SECURE = True
+
 SESSION_COOKIE_SECURE = True
 
 # Enable HTTPS-only for CSRF tokens
@@ -31,6 +32,9 @@ SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
