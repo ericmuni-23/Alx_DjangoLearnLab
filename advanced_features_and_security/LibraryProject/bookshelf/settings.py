@@ -26,3 +26,17 @@ MIDDLEWARE = [
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 CSP_SCRIPT_SRC = ("'self'",)
+
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    # ... (other middleware)
+]
+
+# Set allowed hosts
+ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
+

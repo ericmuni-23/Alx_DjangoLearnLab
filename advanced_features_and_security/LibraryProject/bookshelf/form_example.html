@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="{% url 'submit_form' %}">
+    {% csrf_token %}
+    <!-- Form fields go here -->
+    <input type="text" name="example_field">
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
